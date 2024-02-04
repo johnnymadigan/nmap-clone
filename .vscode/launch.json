@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+      {
+        "name": "quick-port-scanner",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.py",
+        "args": [],
+        "console": "integratedTerminal"
+      }
+    ]
+  }
