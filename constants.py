@@ -1,0 +1,21 @@
+# Currently listing the most common
+port_services = {
+    20: "FTP (File Transfer Protocol) - Data",
+    21: "FTP (File Transfer Protocol) - Control",
+    22: "SSH (Secure Shell)",
+    23: "Telnet",
+    25: "SMTP (Simple Mail Transfer Protocol)",
+    53: "DNS (Domain Name System)",
+    80: "HTTP (Hypertext Transfer Protocol)",
+    110: "POP3 (Post Office Protocol version 3)",
+    143: "IMAP (Internet Message Access Protocol)",
+    443: "HTTPS (HTTP Secure)",
+    465: "SMTPS (Simple Mail Transfer Protocol Secure)",
+    587: "SMTP (Mail Submission)",
+    993: "IMAPS (Internet Message Access Protocol over SSL)",
+    995: "POP3S (Post Office Protocol version 3 Secure)",
+    3306: "MySQL Database",
+    5432: "PostgreSQL Database",
+    8080: "HTTP Alternate (commonly used for web proxy and caching server, or for running a web server as a non-root user)",
+    8443: "HTTPS Alternate (commonly used for secure web access)",
+}
