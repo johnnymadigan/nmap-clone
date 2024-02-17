@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!venv/bin/python3
 
 import sys
 import socket
@@ -15,15 +15,17 @@ def main():
     """
 
     # Font: Crawford2
-    print("")
-    print(" ____   ___ ___   ____  ____          __  _       ___   ____     ___ ")
-    print("|    \ |   |   | /    ||    \        /  ]| |     /   \ |    \   /  _]")
-    print("|  _  || _   _ ||  o  ||  o  )      /  / | |    |     ||  _  | /  [_ ")
-    print("|  |  ||  \_/  ||     ||   _/      /  /  | |___ |  O  ||  |  ||    _]")
-    print("|  |  ||   |   ||  _  ||  |       /   \_ |     ||     ||  |  ||   [_ ")
-    print("|  |  ||   |   ||  |  ||  |       \     ||     ||     ||  |  ||     |")
-    print("|__|__||___|___||__|__||__|        \____||_____| \___/ |__|__||_____|")
-    print("                                                     by Johnny Madigan")
+    print(r"""
+     a speedrun project...
+     ____   ___ ___   ____  ____          __  _       ___   ____     ___ 
+    |    \ |   |   | /    ||    \        /  ]| |     /   \ |    \   /  _]
+    |  _  || _   _ ||  o  ||  o  )      /  / | |    |     ||  _  | /  [_ 
+    |  |  ||  \_/  ||     ||   _/      /  /  | |___ |  O  ||  |  ||    _]
+    |  |  ||   |   ||  _  ||  |       /   \_ |     ||     ||  |  ||   [_ 
+    |  |  ||   |   ||  |  ||  |       \     ||     ||     ||  |  ||     |
+    |__|__||___|___||__|__||__|        \____||_____| \___/ |__|__||_____|
+                                                    ...by Johnny Madigan
+    """)
 
 
     target = ""
@@ -61,16 +63,16 @@ def main():
         elif not is_port_in_range(max_port):
             print("Port out of scope (0-65353), please try again")
 
-    print(f"Scan for '{target}' started at {datetime.now().strftime('%H:%M')}")
+    print(f"✔ Scan for '{target}' started at {datetime.now().strftime('%H:%M')}")
 
     # PING HOST
     ping_res = ping(target)
     is_target_up = ping_res is not None and ping_res is not False
 
     if (is_target_up):
-        print(f"Host is up ({round(ping_res, 2)}s latency)")
+        print(f"✔ Host is up ({round(ping_res, 2)}s latency)")
     else:
-        print("Host offline")
+        print("✘ Host offline")
         sys.exit()
 
     # SCAN PORTS
@@ -87,20 +89,20 @@ def main():
             bar.next()
 
     except socket.error:
-        print(f"Lost connection to {target}")
+        print(f"✘ Lost connection to {target}")
 
     # PRINT REPORT
     finally:
         bar.finish()
 
         if (len(open_ports) == 0):
-            print("\nNo open ports")
+            print("\n✔ No open ports")
         else:
             open_ports_w_desc: list[str] = [f"{port}/tcp".ljust(10) + "open".ljust(10) + f"{port_services[port] if port_services.get(port) else '-'}" for port in open_ports]
             print("\nPORT".ljust(10) + "STATE".ljust(10) + "SERVICE GUESS 🪪")
             print('\n'.join(open_ports_w_desc))
 
-        print(f"\nScan for '{target}' finished at {datetime.now().strftime('%H:%M %p')}\n")
+        print(f"\n✔ Scan for '{target}' finished at {datetime.now().strftime('%H:%M %p')}\n")
 
 if __name__ == "__main__":
     main()
