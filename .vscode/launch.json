@@ -1,13 +1,13 @@
 {
-    "version": "1.0.0",
-    "configurations": [
-      {
-        "name": "nmap-clone",
-        "type": "debugpy",
-        "request": "launch",
-        "program": "${workspaceFolder}/app.py",
-        "args": [],
-        "console": "integratedTerminal"
-      }
-    ]
-  }
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "nmap-clone",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/app.py",
+      "args": [],
+      "console": "integratedTerminal"
+    }
+  ]
+}
