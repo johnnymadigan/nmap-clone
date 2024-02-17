@@ -5,7 +5,7 @@
         "name": "nmap-clone",
         "type": "debugpy",
         "request": "launch",
-        "program": "${workspaceFolder}/main.py",
+        "program": "${workspaceFolder}/app.py",
         "args": [],
         "console": "integratedTerminal"
       }
