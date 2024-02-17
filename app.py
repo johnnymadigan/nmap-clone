@@ -6,47 +6,17 @@ from ping3 import ping
 from constants import port_services
 from datetime import datetime
 from progress.bar import FillingSquaresBar
+from utils import is_port_in_range, is_port_open, is_valid_ipv4, dns_resolve_host
                                                         
-def is_port_open(ip: str, port: int, timeout_s: float = 0.5):
+def main():
     """
-    Checks if a port is open on a target host using IPv4 and TCP
-    """
-    if not is_port_in_range(port):
-        return False
-    
-    # AF_INET = IPv4, AF_INET6 = IPv6, AF_BLUETOOTH = Bluetooth, ...
-    # SOCK_STREAM = TCP, SOCK_DGRAM = UDP
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.settimeout(timeout_s)
-        is_open = False if s.connect_ex((ip, port)) else True
-        return is_open
-
-def is_port_in_range(port: int):
-    """
-    Checks if a port is in the network protocol port range
-    """
-    return 0 <= port <= 65353
-
-def is_valid_ipv4(target: str | None):
-    """
-    Checks if an IP is in a valid format
-    """
-    try:
-        if not target:
-            return
-        
-        socket.inet_aton(target)
-        return True
-    except:
-        return False
-
-def dns_resolve_host(target: str):
-    """
-    Attempt to DNS resolve the IP, returning the IP or None
+    NMAP CLONE
+    Example host address: 137.74.187.102 (ping hackthissite.org)
     """
 
     # Font: Crawford2
     print("")
+    print(" ____   ___ ___   ____  ____          __  _       ___   ____     ___ ")
     print("|    \ |   |   | /    ||    \        /  ]| |     /   \ |    \   /  _]")
     print("|  _  || _   _ ||  o  ||  o  )      /  / | |    |     ||  _  | /  [_ ")
     print("|  |  ||  \_/  ||     ||   _/      /  /  | |___ |  O  ||  |  ||    _]")
@@ -55,16 +25,7 @@ def dns_resolve_host(target: str):
     print("|__|__||___|___||__|__||__|        \____||_____| \___/ |__|__||_____|")
     print("                                                     by Johnny Madigan")
 
-    try:
-        return socket.gethostbyname(target)
-    except:
-        return None
 
-def main():
-    """
-    NMAP CLONE
-    Example host address: 137.74.187.102 (ping hackthissite.org)
-    """
     target = ""
 
     while not is_valid_ipv4(target):
@@ -85,12 +46,14 @@ def main():
     print("Please specify port range to scan")
 
     min_port = -1
+
     while not is_port_in_range(min_port):
         min_port = int(input("Min port: "))
         if not is_port_in_range(min_port):
             print("Port out of scope (0-65353), please try again")
 
     max_port = -1
+
     while max_port <= min_port or not is_port_in_range(min_port):
         max_port = int(input("Max port: "))
         if max_port <= min_port:
@@ -137,7 +100,7 @@ def main():
             print("\nPORT".ljust(10) + "STATE".ljust(10) + "SERVICE GUESS 🪪")
             print('\n'.join(open_ports_w_desc))
 
-        print(f"\nScan for '{target}' finished at {datetime.now().strftime("%H:%M %p")}")
+        print(f"\nScan for '{target}' finished at {datetime.now().strftime("%H:%M %p")}\n")
 
 if __name__ == "__main__":
     main()
