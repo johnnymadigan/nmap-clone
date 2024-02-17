@@ -61,7 +61,7 @@ def main():
         elif not is_port_in_range(max_port):
             print("Port out of scope (0-65353), please try again")
 
-    print(f"Scan for '{target}' started at {datetime.now().strftime("%H:%M")}")
+    print(f"Scan for '{target}' started at {datetime.now().strftime('%H:%M')}")
 
     # PING HOST
     ping_res = ping(target)
@@ -100,7 +100,7 @@ def main():
             print("\nPORT".ljust(10) + "STATE".ljust(10) + "SERVICE GUESS 🪪")
             print('\n'.join(open_ports_w_desc))
 
-        print(f"\nScan for '{target}' finished at {datetime.now().strftime("%H:%M %p")}\n")
+        print(f"\nScan for '{target}' finished at {datetime.now().strftime('%H:%M %p')}\n")
 
 if __name__ == "__main__":
     main()
