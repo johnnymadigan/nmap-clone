@@ -29,15 +29,12 @@ def is_port_in_range(port: int):
     """
     return 0 <= port <= 65353
 
-def is_valid_ipv4(target: str | None):
+def is_valid_ipv4(ip: str | None):
     """
     Checks if an IP is in a valid format
     """
     try:
-        if not target:
-            return
-        
-        socket.inet_aton(target)
+        socket.inet_aton(ip)
         return True
     except:
         return False
